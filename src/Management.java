@@ -2,6 +2,8 @@ import com.gsjk.result.Result;
 import com.gsjk.user.UserInfo;
 import com.gsjk.user.UserServiceImpl;
 
+import java.util.Scanner;
+
 /**
  * @program: usermanagement
  * @Description: main function
@@ -10,12 +12,39 @@ import com.gsjk.user.UserServiceImpl;
  */
 public class Management {
     public static void main(String[] args){
-        UserInfo user = new UserInfo();
-        user.setUsername("Jame");
-        user.setPassword("12348886");
-
-        UserServiceImpl userService = new UserServiceImpl();
-        Result result = userService.register(user);
-        System.out.println(result.getResultmessage());
+        int choose = 5;
+        do{
+            System.out.println("Please choose the options below:");
+            System.out.println("1.login  2.register  3.forget password  4.exit");
+            Scanner scanner = new Scanner(System.in);
+            choose = scanner.nextInt();
+            switch (choose){
+                case 1:
+                    UserInfo userLogin = new UserInfo();
+                    System.out.println("Please enter user name:");
+                    userLogin.setUsername(scanner.next());
+                    System.out.println("Please enter user password:");
+                    userLogin.setPassword(scanner.next());
+                    break;
+                case 2:
+                    UserInfo userRegister = new UserInfo();
+                    System.out.println("Please enter user name:");
+                    userRegister.setUsername(scanner.next());
+                    System.out.println("Please enter user password:");
+                    userRegister.setPassword(scanner.next());
+                    UserServiceImpl userService = new UserServiceImpl();
+                    Result result = userService.register(userRegister);
+                    System.out.println(result.getResultmessage());
+                    break;
+                case 3:
+                    System.out.println("Please enter user name:");
+                    break;
+                case 4:
+                    choose = 6;
+                    break;
+                default:
+                    System.out.println("incorrect!");
+            }
+        }while(choose < 6);
     }
 }
