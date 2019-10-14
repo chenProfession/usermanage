@@ -10,6 +10,14 @@ public class Result {
     private int resultcode;
     private String resultmessage;
 
+    public Result() {
+    }
+
+    public Result(int resultcode, String resultmessage) {
+        this.resultcode = resultcode;
+        this.resultmessage = resultmessage;
+    }
+
     public int getResultcode() {
         return resultcode;
     }

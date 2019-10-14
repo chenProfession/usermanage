@@ -23,5 +23,5 @@ public interface UserDao {
     * @Author: Mr.Cheng
     * @Date: 2019/10/9 4:11 下午
     */ 
-    public UserInfo registerUser(UserInfo userInfo);
+    public boolean saveUser(UserInfo userInfo);
 }

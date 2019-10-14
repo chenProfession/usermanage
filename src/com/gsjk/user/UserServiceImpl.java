@@ -33,6 +33,13 @@ public class UserServiceImpl implements UserService {
      */
     @Override
     public Result register(UserInfo userInfo) {
-        return null;
+        UserDaoImpl userDao = new UserDaoImpl();
+        boolean register = userDao.saveUser(userInfo);
+        Result result = new Result(404,"can not save");
+        if(register){
+            result.setResultcode(200);
+            result.setResultmessage("saved");
+        }
+        return result;
     }
 }
