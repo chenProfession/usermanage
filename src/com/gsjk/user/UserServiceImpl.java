@@ -1,5 +1,6 @@
 package com.gsjk.user;
 
+import com.gsjk.DefaultValue.DefaultValue;
 import com.gsjk.result.Result;
 
 /**
@@ -18,9 +19,16 @@ public class UserServiceImpl implements UserService {
      * @Date: 2019/10/9 3:56 下午
      */
     @Override
-    public Result login(UserInfo userinfo) {
-
-        return null;
+    public Result login(UserInfo userLogin) {
+        UserDaoImpl userDao = new UserDaoImpl();
+        UserInfo userInfo = userDao.findUserInfoByName(userLogin.getUsername());
+        Result result = new Result(402,"incorrect pwd");
+        if(userInfo.getUsername().equals(userLogin.getUsername()) &&
+                userInfo.getPassword().equals(userLogin.getPassword())){
+            result.setResultcode(201);
+            result.setResultmessage("welcome " + userInfo.getUsername());
+        }
+        return result;
     }
 
     /**

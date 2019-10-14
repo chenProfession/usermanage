@@ -2,10 +2,7 @@ package com.gsjk.user;
 
 import com.gsjk.DefaultValue.DefaultValue;
 
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 
 /**
  * @program: usermanagement
@@ -25,8 +22,27 @@ public class UserDaoImpl implements UserDao {
     @Override
     public UserInfo findUserInfoByName(String username) {
         // get user information from the files
-
-        return null;
+        UserInfo userInfo = new UserInfo();
+        try {
+            if (username == null || username.length() == 0) {
+                throw new Exception();
+            }
+            String filename = DefaultValue.FILEPATH + username + DefaultValue.FILETYPE;
+            File file =new File(filename);
+            if(!file.exists()){
+                throw new Exception();
+            }
+            BufferedReader in = new BufferedReader(new FileReader(file));
+            String findName = in.readLine();
+            String findPassword = in.readLine();
+            userInfo.setUsername(findName);
+            userInfo.setPassword(findPassword);
+        }catch (IOException e){
+            e.printStackTrace();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return userInfo;
     }
 
     /**
