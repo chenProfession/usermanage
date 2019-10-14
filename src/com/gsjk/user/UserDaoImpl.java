@@ -46,9 +46,13 @@ public class UserDaoImpl implements UserDao {
                 throw new Exception();
             }
             String filename = DefaultValue.FILEPATH + userInfo.getUsername() + DefaultValue.FILETYPE;
-            System.out.println(filename);
             String content = userInfo.getUsername() + "\n" + userInfo.getPassword();
-            BufferedWriter out = new BufferedWriter(new FileWriter(userInfo.getUsername()+DefaultValue.FILETYPE));
+            File file =new File(filename);
+            if(file.exists()){
+                throw new Exception();
+            }
+            file.createNewFile();
+            BufferedWriter out = new BufferedWriter(new FileWriter(file,true));
             out.write(content);
             out.close();
             result = true;

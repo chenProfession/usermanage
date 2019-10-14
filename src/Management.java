@@ -12,7 +12,7 @@ public class Management {
     public static void main(String[] args){
         UserInfo user = new UserInfo();
         user.setUsername("Jame");
-        user.setPassword("123456");
+        user.setPassword("12348886");
 
         UserServiceImpl userService = new UserServiceImpl();
         Result result = userService.register(user);
